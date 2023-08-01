@@ -1,0 +1,58 @@
+#root {
+    background: #B5E202;
+    width: 343px;
+    height: 470px;
+    flex-shrink: 0;
+}
+
+hr 
+{
+    margin-left: 25%;
+}
+
+h3,h2 {
+
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+h2
+{
+    font-size: 16px;
+}
+
+hr {
+    width: 123px;
+    height: 1px;
+    background: white;
+    border-color: white;
+}
+
+form
+{
+    margin: 5% 0%;
+}
+
+form div 
+{
+    margin: 3% auto;
+}
+
+form h3
+{
+    text-align: left;
+    margin-bottom: 1%;
+}
+
+form input
+{
+    text-align: center;
+    width: 100%;
+    background-color: transparent;
+    border: solid white 3px;
+    border-radius: 8px;
+}
