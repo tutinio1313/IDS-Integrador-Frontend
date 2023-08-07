@@ -1,17 +1,7 @@
-import React from 'react'
+import React, { Component } from "react";
 
-function Register() {
-
-    if(document.getElementById('login').is(":disabled"))
-
-    
-    return
-    (
-        <div>
-
-        </div>
-    );
+export default class Register extends Component {
+  render() {
+    return <div><h3>lo muchacho</h3></div>;
+  }
 }
-
-
-export default Register
