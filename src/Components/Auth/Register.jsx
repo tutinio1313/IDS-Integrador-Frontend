@@ -12,22 +12,26 @@ export default function Register() {
   const CompareIfCanRegister = () => {
     let inputs = document.getElementsByTagName('input');
     let areNotEmpty = true;
-    
-    for (let index = 2, length = inputs.length; index < length; index += 1) {
+    const arePasswordsEquals = inputs[3].value == inputs[4].value;
+    const areEmailEquals = inputs[5].value == inputs[6].value;
+
+    for (let index = 2, length = inputs.length; index < length; index += 1) 
+    {
       areNotEmpty = inputs[index].value != '';
     }
+
 
     SetCanRegister(areNotEmpty);
     const button = document.getElementById('RegisterSubmit');
 
-   if(canRegister)
-   {
-    (button.getAttribute('disabled') != null ?  button.removeAttribute('disabled') : "");
-   }
-   else
-   {
-    (button.getAttribute('disabled') == null ?  button.setAttribute ('disabled','disabled') : "");
-   }
+    if(canRegister && arePasswordsEquals && areEmailEquals)
+    {
+      (button.getAttribute('disabled') != null ?  button.removeAttribute('disabled') : "");
+    }
+    else
+    {
+      (button.getAttribute('disabled') == null ?  button.setAttribute ('disabled','disabled') : "");
+    }
   }
 
   return (
