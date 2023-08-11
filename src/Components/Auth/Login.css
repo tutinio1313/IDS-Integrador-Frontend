@@ -1,9 +1,10 @@
 #root {
-    background: #B5E202;
-    width: max-content;
-    padding: 3% auto;
-    height: 470px;
+    background: #C8CE00;
+    width: 343px;
+    height: 530px;
     flex-shrink: 0;
+
+    transition: background-color 350ms;
 }
 
 
@@ -52,4 +53,17 @@ form input
     background-color: transparent;
     border: solid white 3px;
     border-radius: 8px;
+}
+
+.AuthButton
+{
+    background-color: #C8CE00;
+    border: 2px solid white;
+    width: 130px;
+    transition: filter 250ms;
+}
+
+.AuthButton:disabled
+{
+    filter: brightness(30%);
 }
