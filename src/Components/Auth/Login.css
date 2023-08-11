@@ -1,14 +1,11 @@
 #root {
     background: #B5E202;
-    width: 343px;
+    width: max-content;
+    padding: 3% auto;
     height: 470px;
     flex-shrink: 0;
 }
 
-hr 
-{
-    margin-left: 25%;
-}
 
 h3,h2 {
 
@@ -27,7 +24,7 @@ h2
 
 hr {
     width: 123px;
-    height: 1px;
+    height: 15px;
     background: white;
     border-color: white;
 }

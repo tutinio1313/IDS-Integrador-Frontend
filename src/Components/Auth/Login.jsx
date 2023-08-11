@@ -8,6 +8,7 @@ export default class Login extends Component {
       <div id="login">
         <div>
           <h2>Iniciar sesión</h2>
+          <hr className="rounded-md mx-auto mb-3" style={{height: "2px"}} />
         </div>
   
         <div>
@@ -19,14 +20,14 @@ export default class Login extends Component {
     
             <div>
               <h3>Contraseña</h3>
-              <input name="password" type="password" />
+              <input name="password" type="password"/>
             </div>
           </form>
         </div>
   
         <button type="submit" disabled>Ingresar</button>
   
-        <hr />
+        <hr className="h-1 rounded-md mx-auto mb-3" />
   
 
       </div>

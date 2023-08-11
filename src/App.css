@@ -13,6 +13,3 @@ html
   background: linear-gradient(180deg, #05BE01 0%, #044A02 100%);
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

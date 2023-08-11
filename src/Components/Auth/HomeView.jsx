@@ -1,27 +1,38 @@
-import React, { Component } from 'react';
-import Login from './Login';
-import Register from './Register';
+import React, { Component, useState, useEffect } from "react";
+import Login from "./Login.jsx";
+import Register from "./Register.jsx";
 
-export default class HomeView extends Component {
-    
+export default function HomeView() {
+  const [option, SetOption] = useState(true);
+  const ChangeView = (state) => {
+    if (state) {
+      document.getElementById("login").style.display = "block";
+      document.getElementsByTagName('button')[1].style.display = 'inline-block';
+      document.getElementById("register").style.display = "none";
+      document.getElementsByTagName('p')[0].style.display = 'none';
+    } else {
+      document.getElementById("login").style.display = "none";
+      document.getElementsByTagName('button')[1].style.display = 'none';
+      document.getElementById("register").style.display = 'block';
+      document.getElementsByTagName('p')[0].style.display = 'inherit';
+    }
 
-    render(props) {
-        let [option,SetOption] = useState();
-        
-        useEffect(() => {
-          return(
-          <div>
-            <Login/>
-            <button onClick="render(false)">Registrarse</button>
-        </div>)
-        
-          return (return
-            (
-                <div>
-                    <Register/>
-                    <p>¿Usted ya tiene una cuenta? <br/> haga click en el siguiente <a onClick="render(true)">link</a>.</p>
-                </div>
-            );)
-        }, [option]);
-  }
+    SetOption((option) => !option);
+  };
+
+  return (
+    <>
+     
+      <Login id ="login"/>
+      <button onClick={() => ChangeView(false)}>Registrarse</button>
+
+      <Register id ="register" />
+      
+      <p style={{display : "none"}}>
+        ¿Usted ya tiene una cuenta? <br /> haga click en el siguiente{" "}
+        <a onClick={() => ChangeView(true)}>link</a>.
+      </p>
+      
+    </>
+  );
 }
