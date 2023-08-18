@@ -1,0 +1,18 @@
+[
+    {
+        "name": "BaseRoute",
+        "link": "https://localhost:7075"
+    },
+    {
+        "name": "UserLogin",
+        "link": "/User/Login"
+    },
+    {
+        "name": "UserRegister",
+        "link": "/User/Register"
+    },
+    {
+        "name": "UserLoginKey",
+        "link": "/User/LoginKey"
+    }
+]
