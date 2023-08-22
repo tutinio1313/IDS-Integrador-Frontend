@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import "./App.css";
-import HomeView from './Components/Auth/HomeView';
+import Authview from './Components/Auth/AuthView';
 function App() {
 
+
   return (
-      <HomeView option = 'true'/>
+      <Authview option = 'true'/>
   )
 }
 

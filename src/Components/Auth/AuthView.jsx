@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx"; 
 
-export default function HomeView() {
+export default function AuthView() {
   const [option, SetOption] = useState(true);
   const ChangeView = (state) => {
     if (state) {

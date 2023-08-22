@@ -47,7 +47,6 @@ export default function Login() {
         method: "POST",
         mode: "cors",
         credentials: "same-origin",
-        redirect: "follow",
         referrer: "no-referrer",
         headers: {
           Accept: "application/json",
@@ -56,16 +55,12 @@ export default function Login() {
         body: JSON.stringify(data)
       })
         .then((response) => {
-          // reject on network failure or if anything prevented the request from completing.
-          // won’t reject on HTTP error status even if the response is an HTTP 404 or 500,
-          // it will resolve normally (with ok status set to false)
           if (response.status >= 200 && response.status < 300) {
             SetLoginWasSuccesful(true);
           }
-
           return Promise.reject(new Error(response.statusText));
         })
-        .then((response) => response.json()) // parses response to JSON
+        .then((response) => response.json())
         .then((result) => {
           // custom error
         })
