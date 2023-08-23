@@ -1,12 +1,12 @@
-import Paths from "./Paths/URLPaths.json";
+import Paths from "./Paths/HomeCardPaths.json";
 
-export default function Router(param) { 
+export default function HomeCardRouter(param) { 
 
     for(let i = 0; i < Paths.length;i++)
     {
           if(Paths[i].name == param)
           {
-                return Paths[0].link + Paths[i].link;
+                return Paths[0].Body;
           }
           else
           {

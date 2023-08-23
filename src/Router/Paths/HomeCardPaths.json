@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Teams",
+        "Body": {
+            "Title": "Equipos",
+            "URLLogo": "/assets/Images/Card/Teams.svg"
+        }
+    },
+    {
+        "name": "Stats",
+        "Body": {
+            "Title": "Tabla",
+            "URLLogo": "/assets/Images/Card/Stats.svg"
+        }
+    },
+    {
+        "name": "Matches",
+        "Body": {
+            "Title": "Partidos",
+            "URLLogo": "/assets/Images/Card/Matches.svg"
+        }
+    },
+    {
+        "name": "Jugadores",
+        "Body": {
+            "Title": "Players",
+            "URLLogo": "/assets/Images/Card/Players.svg"
+        }
+    }
+]
