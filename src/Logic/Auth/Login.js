@@ -1,35 +1,30 @@
 import Router from "/src/Router/Router";
+import axios from 'axios';
 
-export default function Login(canLogin, UserName,Password) 
+export default async function Login(canLogin, UserName,Password) 
   {    
     var url = Router("UserLogin");
-    var data = [UserName, Password];
+    var data = {"Username" : UserName, "Password" : Password};
+    var test =JSON.stringify(data);
+
+    console.log(await axios('api/Team', []));
+
 
     if (canLogin) {
-      const result = fetch(url, {
+      var result = await fetch(url, {
         method: "POST",
-        mode: "cors",
-        credentials: "same-origin",
-        referrer: "no-referrer",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          'accept' : 'application/json',
+            'Content-Type' : 'application/json; charset=utf-8',
         },
         body: JSON.stringify(data)
       })
         .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
-            SetLoginWasSuccesful(true);
-          }
-          return Promise.reject(new Error(response.statusText));
+          console.log(response);
         })
-        .then((response) => response.json())
-        .then((result) => {
-          // custom error
-        })
-        .catch((error) => {
-          // common error
-          return null;
-        });
+        .catch( error =>
+          {
+            console.error(error);
+          });
     }
   };

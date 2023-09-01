@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect } from "react";
-import Router from "/src/Router/Router";
 import PostRegister from '/src/Logic/Auth/Register.js';
 
 export default function Register() {
@@ -59,7 +58,7 @@ export default function Register() {
       </div>
 
       <div>
-        <form onSubmit={PostRegister}>
+        <form onSubmit={() => {PostRegister(canRegister,UserName,Password,Email,Name,Lastname)}}>
           <div>
             <h3>Usuario</h3>
             <input id="Username" />
@@ -118,7 +117,6 @@ export default function Register() {
             type="submit"
             id="RegisterSubmit"
             className="AuthButton mb-3"
-            onChange={PostRegister}
             disabled
           >
             Ingresar

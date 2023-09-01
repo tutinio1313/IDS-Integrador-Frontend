@@ -1,0 +1,16 @@
+{
+    "name": "IDS-Integrador",
+    "short_name": "IDS-Integrador",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "icons": [
+      {
+        "src": "./Images/Logo.svg",
+        "sizes": "48x48",
+        "type": "image/png"
+      }
+    ],
+    "permisions" : "http://localhost:5186/*"
+  }
+  

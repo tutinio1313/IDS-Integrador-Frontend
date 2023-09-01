@@ -1,7 +1,7 @@
 [
     {
         "name": "BaseRoute",
-        "link": "https://localhost:7075"
+        "link": "/api"
     },
     {
         "name": "UserLogin",
@@ -14,5 +14,9 @@
     {
         "name": "UserLoginKey",
         "link": "/User/LoginKey"
+    },
+    {
+        "name" : "Team",
+        "link" : "/Team"
     }
 ]

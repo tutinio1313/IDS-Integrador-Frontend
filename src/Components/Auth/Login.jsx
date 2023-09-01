@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from "react";
 import Post from '/src/Logic/Auth/Login.js';
 import "./Login.css";
 
-
 export default function Login() {
   const [canLogin, SetCanLogin] = useState(false);
   const [LoginWasSuccesful, SetLoginWasSuccesful] = useState(false);
@@ -49,9 +48,8 @@ export default function Login() {
 
       <div className="mt-6">
         <form
-          method="post"
-          onSubmit={(e) => {
-            Post;
+         onSubmit={(e) => {
+            Post(canLogin, UserName, Password);
           }}
         >
           <div>
