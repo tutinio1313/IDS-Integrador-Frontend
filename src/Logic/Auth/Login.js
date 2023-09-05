@@ -1,23 +1,17 @@
 import Router from "/src/Router/Router";
-import axios from 'axios';
 
 export default async function Login(canLogin, UserName,Password) 
   {    
-    var url = Router("UserLogin");
-    var data = {"Username" : UserName, "Password" : Password};
-    var test =JSON.stringify(data);
-
-    console.log(await axios('api/Team', []));
-
 
     if (canLogin) {
+      const url = Router("UserLogin");
       var result = await fetch(url, {
         method: "POST",
         headers: {
           'accept' : 'application/json',
             'Content-Type' : 'application/json; charset=utf-8',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({"Username" : UserName, "Password" : Password})
       })
         .then((response) => {
           console.log(response);

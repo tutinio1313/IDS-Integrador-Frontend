@@ -9,25 +9,29 @@ export default async function Register(
   LastName
 ) {
   if (canRegister) {
-    var url = Router("UserRegister");
-    var data = {
-      Username: UserName,
-      Name: Name,
-      Lastname: LastName,
-      Email: Email,
-      Password: Password
-    };
-
-    var result = await fetch(url, {
+      var result = await fetch(Router("UserRegister"), {
       method: "POST", 
       mode : 'cors',
       headers: {
         'accept' : 'application/json',
             'Content-Type' : 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        Username: UserName,
+        Name: Name,
+        Lastname: LastName,
+        Email: Email,
+        Password: Password
+      })
     }).then((response) => {
-      console.log(response);
+      if(response.stateExecution){
+
+      } 
+      else{
+        
+      }
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }
