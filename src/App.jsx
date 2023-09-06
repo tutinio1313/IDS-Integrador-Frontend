@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import './App.css';
-import Authview from './Components/Auth/AuthView';
-function App() {
+import AuthPage from './Routes/Auth/AuthPage';
+import IsLogged from './Logic/Auth/IsLogged.js'
 
+export default function App() {
 
+  
   return (
-      <Authview option = 'true'/>
-  )
+    window.location.href = "http://localhost:5173/login"
+  );
 }
 
-export default App
