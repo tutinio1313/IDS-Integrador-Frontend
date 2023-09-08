@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import './index.css';
+
 import ErrorPage from '/src/Routes/Error/ErrorPage.jsx';
 import AuthPage from '/src/Routes/Auth/AuthPage.jsx'
+import HomePage from '/src/Routes/Home/HomePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element : <AuthPage/>
+  },
+  {
+    path : "/Home",
+    element : <HomePage/>
   }
 ]);
 

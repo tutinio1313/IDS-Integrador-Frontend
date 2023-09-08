@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import Login from "/src/Components/Auth/Login.jsx";
-import Register from "/src/Components/Auth/Register.jsx"; 
+import Register from "/src/Components/Auth/Register.jsx";
+import "/src/Styles/Auth/AuthPage.css"; 
 
 export default function AuthPage() {
   const [option, SetOption] = useState(true);

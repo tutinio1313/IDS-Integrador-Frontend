@@ -1,9 +1,3 @@
-#root {
-    flex-shrink: 0;
-
-    transition: background-color 350ms;
-}
-
 #AuthPageContainer
 {
     background: #C8CE00;

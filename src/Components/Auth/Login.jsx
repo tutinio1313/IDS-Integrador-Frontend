@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
 import Post from '/src/Logic/Auth/Login.js';
-import "./Login.css";
 
 export default function Login() {
   const [canLogin, SetCanLogin] = useState(false);

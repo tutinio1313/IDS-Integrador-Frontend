@@ -1,11 +1,13 @@
 #root {
-  background: linear-gradient(180deg, #05BE01 0%, #044A02 100%);
   height: 100%;
   width: 100%;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #05BE01 0%, #044A02 100%);
 }
 
-html, body
-{
+html,body{
+  height: 100%;
+  width: 100%;
   background-color: #044A02;
 }
 
