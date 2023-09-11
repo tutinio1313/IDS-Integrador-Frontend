@@ -1,10 +1,18 @@
+import "/src/Styles/Home/HomePage.css";
 import React from "react";
 import ButtonObject from '/src/Router/Paths/HomeCardPaths.json';
 import Card from "/src/Components/Home/Card.jsx";
-import "/src/Styles/Home/HomePage.css";
+
+import GetTeams from "/src/Logic/Home/GetTeams.js";
+
+GetTeams();
 
 export default function HomeView(param) {
-    //if (param.User != null) {
+  //if (param.User != null) {
+    var buttons = [];
+    for(const [key, body] of Object.entries(ButtonObject)){
+      buttons.push(<Card key ={key} Title = {body.Title} URLLogo = {body.URLLogo} />);
+    }
       return(
       <>
         <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
@@ -21,11 +29,20 @@ export default function HomeView(param) {
         </div>
 
         <main className= "flex flex-col md:flex-row">
+           {
+              buttons.map( (button) => (button))              
+           }
+        </main>
+      
+      
+            </>);
+
+        /*  <main className= "flex flex-col md:flex-row">
           <Card Title="Equipo" URLLogo = "/src/assets/Images/Card/Teams.svg"/>
           <Card Title="Tabla" URLLogo = "/src/assets/Images/Card/Stats.svg"/>
           <Card Title="Partidos" URLLogo = "/src/assets/Images/Card/Matches.svg"/>
           <Card Title="Jugadores"URLLogo = "/src/assets/Images/Card/Players.svg"/>
         </main>
-      </>);
+*/
 
 }

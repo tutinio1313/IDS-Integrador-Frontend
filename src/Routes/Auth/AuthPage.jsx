@@ -28,7 +28,7 @@ export default function AuthPage() {
   return (
     <>
     <div className=" mx-auto">
-      <img alt="logo" className=" mb-6 mx-auto" src="/src/assets/Images/Logo.svg"></img>
+      <img alt="logo" className=" mb-6 mx-auto" src="/assets/Images/Logo.svg"></img>
     </div>
 
      <main id="AuthPageContainer" className="">     
