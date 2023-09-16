@@ -1,48 +1,65 @@
 import "/src/Styles/Home/HomePage.css";
-import React from "react";
-import ButtonObject from '/src/Router/Paths/HomeCardPaths.json';
+import { React, useState, useEffect } from "react";
+import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
 import Card from "/src/Components/Home/Card.jsx";
+import PropTypes from "prop-types";
+import GetCategory from "/src/Logic/Home/GetCategory.js";
 
-import GetTeams from "/src/Logic/Home/GetTeams.js";
-
-GetTeams();
+//await LoadCategories();
 
 export default function HomeView(param) {
   //if (param.User != null) {
-    var buttons = [];
-    for(const [key, body] of Object.entries(ButtonObject)){
-      buttons.push(<Card key ={key} Title = {body.Title} URLLogo = {body.URLLogo} />);
+  var buttons = LoadButtons();
+  const [categories, setCategories] = useState(undefined);
+
+  async function LoadCategories() {
+    const kts = await GetCategory();
+    console.log(kts);
+    setCategories(kts);
+  }
+
+  useEffect(() => {
+    if (categories === undefined) {
+      LoadCategories();
     }
-      return(
-      <>
-        <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
-          <h1 className = "text-xl text-center my-auto md:text-2xl ">
-            Bienvenido Andrés Rossini al sistema de
-            arbitraje.
-          </h1>
-        </header>
+  }, [categories]);
 
-        <div className="container my-3 mx-auto text-center">
-          <hr className="mx-auto w-1/6"/>
-          <select className="mx-auto w-1/6" id="CategorySelect"></select>
-          <hr className="mx-auto w-1/6"/>
-        </div>
+  return (
+    <>
+      <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
+        <h1 className="text-xl text-center my-auto md:text-2xl ">
+          Bienvenido Andrés Rossini al sistema de arbitraje.
+        </h1>
+      </header>
 
-        <main className= "flex flex-col md:flex-row">
-           {
-              buttons.map( (button) => (button))              
-           }
-        </main>
-      
-      
-            </>);
+      <div className="container my-3 mx-auto text-center">
+        <hr className="mx-auto w-1/6" />
+        <select className="mx-auto w-1/6 text-center" id="CategorySelect">
+          {categories &&
+            categories.map((category) => {
+              if (category !== undefined) {
+                return (  
+                  <option value={category?.idCategory}>{category?.name}</option>
+                );
+              }
+            })}
+        </select>
+        <hr className="mx-auto w-1/6" />
+      </div>
 
-        /*  <main className= "flex flex-col md:flex-row">
-          <Card Title="Equipo" URLLogo = "/src/assets/Images/Card/Teams.svg"/>
-          <Card Title="Tabla" URLLogo = "/src/assets/Images/Card/Stats.svg"/>
-          <Card Title="Partidos" URLLogo = "/src/assets/Images/Card/Matches.svg"/>
-          <Card Title="Jugadores"URLLogo = "/src/assets/Images/Card/Players.svg"/>
-        </main>
-*/
+      <main className="flex flex-col md:flex-row">
+        {buttons.map((button) => button)}
+      </main>
+    </>
+  );
+}
 
+function LoadButtons() {
+  var buttons = [];
+
+  for (const [key, body] of Object.entries(ButtonObject)) {
+    buttons.push(<Card key={key} Title={body.Title} URLLogo={body.URLLogo} />);
+  }
+
+  return buttons;
 }
