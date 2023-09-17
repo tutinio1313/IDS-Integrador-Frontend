@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import "/src/Styles/Home/Card.css";
 
 
@@ -10,4 +11,9 @@ export default function Card(param) {
       <h3 className ="ml-2 md:ml-0 text-base">{param.Title}</h3>
     </button>
   );
+}
+
+Card.propTypes = {
+  Title : PropTypes.string
+  ,URLLogo : PropTypes.string
 }

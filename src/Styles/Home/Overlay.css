@@ -1,0 +1,22 @@
+#Overlay { 
+    z-index: 10;
+    border-radius: 15px;
+    transition: 1000ms all linear 30ms;
+    box-shadow: 2px 2px 15px 130vh rgba(0, 0, 0, 0.61);
+}
+
+button {
+    border-radius: 20px;
+    transition: 1000ms all linear;
+}
+
+button:hover {
+    background-color: brown;
+}
+
+@media (max-width : 768px) {
+    #Overlay {
+        border-radius: 0;
+    }
+    
+}
