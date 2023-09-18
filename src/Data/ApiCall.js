@@ -11,6 +11,10 @@ export default async function ApiCall(param){
         case 'Category':
             response = GetCategory;
             break;
+
+        case 'User':
+            //response =  
+            break;
     
         default:
             break;

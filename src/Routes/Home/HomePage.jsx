@@ -10,19 +10,31 @@ import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
 
 export default function HomeView(param) {
   //if (param.User != null) {
-  var buttons = LoadButtons();
+  var buttons = [];
   const [categories, setCategories] = useState(undefined);
+  const [renderOverlay, setRenderOverlay] = useState(false);
   const [stackOption, setStackOption] = useState(null);
-
+  
   useEffect(() => {
     if (categories === undefined) {
       LoadCategories();
     }
   }, [categories]);
 
+  const SetOverlay = (status, text) => {
+        setRenderOverlay(status);
+        setStackOption(text);
+
+  }
+
   return (
     <div>
-      <Overlay name = {stackOption} state = {false}/>
+
+      {renderOverlay ? <Overlay 
+                        name = {stackOption}
+                        onClickFunction = {SetOverlay}/> : ""
+      }
+      
 
       <div className = "z-0">
         <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
@@ -38,7 +50,7 @@ export default function HomeView(param) {
             id="CategorySelect"
           >
             {categories &&
-              categories.map((category) => {
+              categories.map((category) => { 
                 if (category !== undefined) {
                   return (
                     <option
@@ -55,30 +67,21 @@ export default function HomeView(param) {
         </div>
 
         <main className="flex flex-col md:flex-row">
-          {buttons.map((button) => button)}
+          {ButtonObject.map((body, key) => {
+              return(<Card 
+              key={key}
+              Title={body.Title}
+              URLLogo={body.URLLogo}
+              onClickFunction = {SetOverlay}
+            />)            
+          })}
         </main>
       </div>
     </div>
   );
 
-  function LoadButtons() {
-    var buttons = [];
-
-    for (const [key, body] of Object.entries(ButtonObject)) {
-      buttons.push(
-        <Card key={key} Title={body.Title} URLLogo={body.URLLogo} onclick = {LoadStack(body.Title)} />
-      );
-    }
-
-    return buttons;
-  }
-
   async function LoadCategories() {
     const kts = await GetCategory();
     setCategories(kts);
-  }
-
-  function LoadStack(title){
-    
   }
 }

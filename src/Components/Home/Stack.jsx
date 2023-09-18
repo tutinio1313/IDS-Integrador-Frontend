@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 import TeamView from './StackViews/TeamView.jsx';
 
-export default function Stack(prop) {
+export default function Stack({name}) {
   
   let response;
 
     if (name !== undefined || name !== null) {
-    switch (prop.name) {
+    switch ({name}) {
       case "Team":
         
         break;
@@ -27,7 +27,3 @@ export default function Stack(prop) {
     }
   }
 }
-
-Stack.propTypes = {
-  name: PropTypes.string
-};

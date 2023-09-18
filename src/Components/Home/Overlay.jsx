@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import Stack from "./Stack.jsx";
 import "/src/Styles/Home/Overlay.css";
 
-export default function Overlay(prop) {
-
-  function GoBack() {
-    document.getElementById('Overlay').classList.add('hidden');
-  }
+export default function Overlay({name, onClickFunction}) {
 
   return (
     <div
@@ -18,10 +14,10 @@ export default function Overlay(prop) {
       <div className =" mt-4 p-2">
         <div className=" flex flex-row justify-between items-center">
           <div/>
-          <h3 className ="text-lg text-center">{prop?.name}</h3>
+          <h3 className ="text-lg text-center">{name}</h3>
           <button 
               className="w-12 h-12 bg-red-600 p-3 text-center align-middle"
-              onClick= {() => GoBack()}
+              onClick= {() => onClickFunction(false, "")}
               >
             x
           </button>
@@ -29,12 +25,7 @@ export default function Overlay(prop) {
         <hr className="mt-8 mx-auto w-1/2 h-1" />
       </div>
 
-      <Stack name= {prop?.name} />
+      <Stack name= {name} />
     </div>
   );
 }
-
-Overlay.propTypes = {
-  name: PropTypes?.string,
-  show: PropTypes?.bool
-};

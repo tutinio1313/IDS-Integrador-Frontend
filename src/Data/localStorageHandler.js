@@ -1,7 +1,7 @@
 import ApiCall from './ApiCall.js';
 
 export default async function localStorageHandler(prop) {
-    var data = import("/JSONs/" + prop);
+    var data = import(`./JSONs/${prop}.json`);
     
     if(data == null)
     {
