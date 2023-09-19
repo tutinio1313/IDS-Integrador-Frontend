@@ -1,14 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-export default async function GetTeam(){
-    await axios.get('api/Team').
-    then( 
-        (response) => {
-            console.log(response);
-            if(response.status == 200 && response.data.stateExecution)
-            {
-                return(response.data.teams);
-            }
-        }
-    );
+export default async function GetTeam() {
+  const response = await axios.get("api/Team");
+  return(response.data.teams);
 }

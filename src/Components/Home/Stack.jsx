@@ -1,29 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import TeamView from './StackViews/TeamView.jsx';
+import TeamView from "./StackViews/TeamView.jsx";
 
-export default function Stack({name}) {
-  
-  let response;
+export default function Stack({ name, category }) {
+  switch (name) {
+    case "Equipos":
+      return (<TeamView category={category}/>);
+      break;
 
-    if (name !== undefined || name !== null) {
-    switch ({name}) {
-      case "Team":
-        
-        break;
+    case "Player":
+      break;
 
-      case "Player":
-        break;
+    case "Stat":
+      break;
 
-      case "Stat":
-        break;
+    case "Match":
+      break;
 
-      case "Match":
-        break;
-
-      default:
-        break;
-    }
+    default:
+      break;
   }
 }

@@ -8,11 +8,12 @@ import Overlay from "/src/Components/Home/Overlay.jsx";
 import GetCategory from "/src/Logic/Home/GetCategory.js";
 import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
 
-export default function HomeView(param) {
+export default function HomeView({user}) {
   //if (param.User != null) {
   var buttons = [];
   const [categories, setCategories] = useState(undefined);
   const [renderOverlay, setRenderOverlay] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [stackOption, setStackOption] = useState(null);
   
   useEffect(() => {
@@ -32,7 +33,9 @@ export default function HomeView(param) {
 
       {renderOverlay ? <Overlay 
                         name = {stackOption}
-                        onClickFunction = {SetOverlay}/> : ""
+                        onClickFunction = {SetOverlay}
+                        category = {selectedCategory}
+                        /> : ""
       }
       
 
@@ -48,6 +51,7 @@ export default function HomeView(param) {
           <select
             className="mx-auto w-1/4 min-w-fit md:w-1/6 text-center"
             id="CategorySelect"
+            onChange = {() => {} }
           >
             {categories &&
               categories.map((category) => { 

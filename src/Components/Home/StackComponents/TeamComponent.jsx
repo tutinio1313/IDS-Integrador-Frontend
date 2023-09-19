@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function TeamComponent(prop) {
+export default function TeamComponent({urlLogo, name}) {
 
-
-}
-
-TeamCompoment.propTypes = {
-    urlLogo : PropTypes.string,
-    name : PropTypes.string,
-    key : PropTypes.int
+    return(
+        <div className = "container w-4/5 mx-auto my-3 flex flex-row">
+            <input type = 'checkbox'/>
+            <img className = " max-h-12 max-w-12" src = {urlLogo}/>
+            <h3 className = "my-auto w-max">{name}</h3>
+        </div>
+    )
 }
 
