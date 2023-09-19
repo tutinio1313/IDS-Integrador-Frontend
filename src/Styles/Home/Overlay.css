@@ -3,6 +3,8 @@
     border-radius: 15px;
     transition: 1000ms all linear 30ms;
     box-shadow: 2px 2px 15px 130vh rgba(0, 0, 0, 0.61);
+    background: linear-gradient(180deg, #077105 0%, #2D712C 100%);
+    border: 2px solid #FFF;
 }
 
 button {
@@ -16,8 +18,8 @@ button {
 }
 
 #Add:hover { 
-    background-color: green;
-    border-color:  green;
+    background-color: rgb(5, 174, 5);
+    border-color:  rgb(5, 174, 5);
 }
 
 @media (max-width : 768px) {

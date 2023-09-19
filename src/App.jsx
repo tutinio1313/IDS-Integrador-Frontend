@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import AuthPage from './Routes/Auth/AuthPage';
-import IsLogged from './Logic/Auth/IsLogged.js';
 import localStorageHandler from './Data/localStorageHandler';
 
 //localStorageHandler("Category");

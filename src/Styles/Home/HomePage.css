@@ -2,6 +2,12 @@
     padding-top: 2%;
 }
 
+hr { 
+    height: 0.5px;
+    border: solid white 1px;
+    border-radius: 3px;
+}
+
 Header{
 
     width: max-content;

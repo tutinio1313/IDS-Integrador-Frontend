@@ -8,53 +8,67 @@ import Overlay from "/src/Components/Home/Overlay.jsx";
 import GetCategory from "/src/Logic/Home/GetCategory.js";
 import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
 
-export default function HomeView({user}) {
-  //if (param.User != null) {
+import localStorageHandler from "/src/Data/localStorageHandler";
+
+export default function HomeView() {
   var buttons = [];
   const [categories, setCategories] = useState(undefined);
   const [renderOverlay, setRenderOverlay] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [stackOption, setStackOption] = useState(null);
-  
+  const [user, setUser] = useState(undefined);
+
   useEffect(() => {
     if (categories === undefined) {
       LoadCategories();
     }
   }, [categories]);
 
-  const SetOverlay = (status, text) => {
-        setRenderOverlay(status);
-        setStackOption(text);
+  useEffect(() => {
+    if (user === undefined) {
+      LoadUser();
+    }
+  }, [user]);
 
-  }
+  const SetOverlay = (status, text) => {
+    setRenderOverlay(status);
+    setStackOption(text);
+  };
 
   return (
     <div>
+      {renderOverlay ? (
+        <Overlay
+          name={stackOption}
+          onClickFunction={SetOverlay}
+          category={selectedCategory}
+        />
+      ) : (
+        ""
+      )}
 
-      {renderOverlay ? <Overlay 
-                        name = {stackOption}
-                        onClickFunction = {SetOverlay}
-                        category = {selectedCategory}
-                        /> : ""
-      }
-      
-
-      <div className = "z-0">
+      <div className="z-0">
         <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
-          <h1 className="text-xl text-center my-auto md:text-2xl ">
-            Bienvenido Andrés Rossini al sistema de arbitraje.
-          </h1>
+          {user !== undefined ? (
+            <h1 className="text-xl text-center my-auto md:text-2xl ">
+              Bienvenido {user.name} {user.lastname} al sistema de arbitraje.
+            </h1>
+          ) : (
+            <h1 className="text-xl text-center my-auto md:text-2xl ">
+              Bienvenido al sistema de arbitraje.
+            </h1>
+          )}
         </header>
 
         <div className="container my-3 mx-auto text-center">
-          <hr className="mx-auto w-1/6" />
+          <hr className="mx-auto w-1/12" />
           <select
             className="mx-auto w-1/4 min-w-fit md:w-1/6 text-center"
             id="CategorySelect"
-            onChange = {() => {} }
+            onChange={() => {}}
           >
             {categories &&
-              categories.map((category) => { 
+              categories.map((category) => {
                 if (category !== undefined) {
                   return (
                     <option
@@ -67,17 +81,19 @@ export default function HomeView({user}) {
                 }
               })}
           </select>
-          <hr className="mx-auto w-1/6" />
+          <hr className="mx-auto w-1/12" />
         </div>
 
         <main className="flex flex-col md:flex-row">
           {ButtonObject.map((body, key) => {
-              return(<Card 
-              key={key}
-              Title={body.Title}
-              URLLogo={body.URLLogo}
-              onClickFunction = {SetOverlay}
-            />)            
+            return (
+              <Card
+                key={key}
+                Title={body.Title}
+                URLLogo={body.URLLogo}
+                onClickFunction={SetOverlay}
+              />
+            );
           })}
         </main>
       </div>
@@ -85,7 +101,12 @@ export default function HomeView({user}) {
   );
 
   async function LoadCategories() {
-    const kts = await GetCategory();
-    setCategories(kts);
+    const categoryResult = await GetCategory();
+    setCategories(categoryResult);
+  }
+
+  async function LoadUser() {
+    const userResult = await localStorageHandler("User");
+    setUser(userResult);
   }
 }

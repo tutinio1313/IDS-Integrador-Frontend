@@ -8,7 +8,7 @@ export default function Overlay({ name,
                                   category}) {
   return (
     <div
-      className="w-full h-full md:mx-auto md:my-auto md:top-0 md:left-0 md:bottom-0 md:right-0 md:h-max md:w-max md:p-10 z-10 absolute bg-green-950"
+      className="w-full h-full md:mx-auto md:my-auto md:top-0 md:left-0 md:bottom-0 md:right-0 md:h-fit md:w-64 p-4 bg-black z-10 absolute"
       id="Overlay"
     >
       <div className=" mt-4 p-2">
@@ -30,6 +30,25 @@ export default function Overlay({ name,
         name = {name}
         category = {category}      
       />
+
+<div 
+        id="ButtonContainer"
+        className = " mt-14 flex justify-between items-center" 
+        >
+        <button
+            id="Add"
+            className=" bg-green-500  md:w-max md:h-max text-xs"
+        >
+          Agregar
+        </button>
+
+        <button
+            id = "Exit"
+            className = "bg-red-500 md:w-max md:h-max text-xs"
+        >
+            Borrar
+        </button>
+      </div>
     </div>
   );
 }
