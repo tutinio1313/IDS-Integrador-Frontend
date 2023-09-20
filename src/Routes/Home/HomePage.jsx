@@ -62,6 +62,7 @@ export default function HomeView() {
 
         <div className="container my-3 mx-auto text-center">
           <hr className="mx-auto w-1/12" />
+          <div>
           <select
             className="mx-auto w-1/4 min-w-fit md:w-1/6 text-center"
             id="CategorySelect"
@@ -81,6 +82,11 @@ export default function HomeView() {
                 }
               })}
           </select>
+          <button style = {{background : "rgb(16, 113, 14)"}} className = " border-white ml-3 hover:text-green-500 hover:border-green-500 text-sm" onClick ={() => {SetOverlay(true, "Categorias")}}>
+          +
+          </button>
+          </div>
+          
           <hr className="mx-auto w-1/12" />
         </div>
 

@@ -4,6 +4,9 @@ import TeamComponent from "/src/Components/Home/StackComponents/TeamComponent.js
 
 export default function TeamView({ category }) {
   const [Teams, setTeams] = useState(undefined);
+  let selectedTeam;
+
+  const setSelectedTeam = (e) => {selectedTeam = e.target.value};
 
   useEffect(() => {
     if (Teams === undefined) {
@@ -26,6 +29,7 @@ export default function TeamView({ category }) {
               key={Team.idTeam}
               name={Team.name}
               urlLogo={Team.urlImage}
+              func = {setSelectedTeam}
             />
           );
         })
