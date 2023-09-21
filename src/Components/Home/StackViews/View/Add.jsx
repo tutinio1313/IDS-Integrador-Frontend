@@ -14,7 +14,7 @@ export default function Add({
         <div className=" flex flex-row justify-between items-center">
           <div />
           {
-            name == "Categoria" || name == "Tabla" ? <h3 className=" ml-8 md:ml-5 text-lg text-center">Agregar una {name}</h3> 
+            name == "Categorias" || name == "Tabla" ? <h3 className=" ml-8 md:ml-5 text-lg text-center">Agregar una {name}</h3> 
             : <h3 className=" ml-8 md:ml-5 text-lg text-center">Agregar un {name}</h3>
           }
           
