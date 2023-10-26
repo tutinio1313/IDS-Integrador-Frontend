@@ -1,10 +1,12 @@
 import {React, useState} from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
+
+
 import Stack from "./Stack.jsx";
 import "/src/Styles/Home/Overlay.css";
 
 import Add from './StackViews/View/Add';
-import Remove from './StackViews/View/Remove';
+//import Remove from './StackViews/View/Remove';
 
 export default function Overlay(
               { name,
@@ -85,4 +87,11 @@ export default function Overlay(
       
     </div>
   );
+}
+
+Overlay.propTypes = {
+  name : PropTypes.string,
+  onClickFunction : PropTypes.func,
+  category : PropTypes.string
+
 }

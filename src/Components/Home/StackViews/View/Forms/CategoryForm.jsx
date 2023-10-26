@@ -3,12 +3,11 @@ import '/src/Styles/Home/Form.css';
 import Post from '/src/Logic/Home/PostCategory.js';
 
 export default function CategoryForm() {
-  const PostCategory = () => {
+  const PostCategory = async () => {
     const text = document.getElementById('category').value;
-    response = Post(text);
-    do{
-
-    }while(response === undefined);
+    console.log("Ab");
+    const response = await CallApi(text);
+    console.log(response);
   };
 
   const SetButtonState = () => {
@@ -29,13 +28,16 @@ export default function CategoryForm() {
   };
   
   return (
-    <form className = "container flex flex-col">
+    <div className = "container flex flex-col">
       <div>
           <label>Categoria</label>
           <input type = 'text' id = "category" onChange = {() => SetButtonState()} name = "category"/>  
         </div>
 
-        <button className = "mt-6 mx-auto text-xs" onClick = {() => {}} id = "submitForm" disabled>Agregar</button>
-    </form>
+        <button className = "mt-6 mx-auto text-xs" onClick = {() => {PostCategory()}} id = "submitForm">Agregar</button>
+    </div>
   )
 }
+
+async function CallApi(param) { return (await Post(param));}
+

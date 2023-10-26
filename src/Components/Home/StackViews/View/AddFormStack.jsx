@@ -1,31 +1,37 @@
 import React from "react";
+import PropTypes from 'prop-types'
+
 import Team from "./Forms/TeamForm";
 import Category from "./Forms/CategoryForm";
 import Player from './Forms/PlayerForm';
+import Match from './Forms/MatchForm';
 
-export default function AddFormStack({ name }) {
+export default function AddFormStack({ name, teamsList, category }) {
 
   console.log(name);
 
   switch (name) {
     case "Equipos":
       return <Team/>;
-      break;
-
+    
     case "Jugadores":
         return <Player />
-      break;
-
+    
     case "Tabla":
       return <Player/>
-      break;
-
+    
     case "Partidos":
-      return <Player/>
-      break;
-
+      return <Match 
+      category = {category}
+      teams = {teamsList}/>
+    
     default:
       return <Category />;
-      break;
-  }
+    }
+}
+
+AddFormStack.propTypes = {
+  name : PropTypes.string,
+  category : PropTypes.number,
+  teamsList : PropTypes.Array
 }

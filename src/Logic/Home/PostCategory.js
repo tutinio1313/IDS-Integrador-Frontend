@@ -1,15 +1,12 @@
-import axios from "axios";
+export default async function PostCategory(categoryName) {
 
-export default async function PostCategory(name) {
-  const response = await axios.Post({
-    url: "api/Category",
-    data: {
-      name: { name }
-    },
-    header : {
-      'Content-Type' : 'application/json'
-    }
+  var dataRequest = JSON.stringify({name : categoryName});
+
+  const response = fetch('/api/Category', {
+    method: 'POST', 
+    mode: 'cors', 
+    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    body: dataRequest
   });
-  console.log(response);
-  return(response);
+  return(response.data);
 }

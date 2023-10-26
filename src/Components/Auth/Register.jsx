@@ -1,24 +1,20 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PostRegister from '/src/Logic/Auth/Register.js';
 
 export default function Register() {
   const [canRegister, SetCanRegister] = useState(false);
-  const [UserName, SetUserName] = useState("");
-  const [Password, SetPassword] = useState("");
-  const [Email, SetEmail] = useState("");
-  const [Name, SetName] = useState("");
-  const [Lastname, SetLastname] = useState("");
-  const [RegisterWasSuccesful, SetRegisterWasSuccesful] = useState("");
+  const [user, setUser] = useState({
+    UserName : "",
+    Password : "",
+    Email : "",
+    Name : "",
+    Lastname : ""
+  });
   
 
   useEffect(() => {
     CompareIfCanRegister();
   }, [canRegister]);
-
-  useEffect(() => {
-    PostRegister(canRegister,UserName,Password,Email,Name,Lastname);
-  }, [RegisterWasSuccesful]);
-
   
 
   const CompareIfCanRegister = () => {
@@ -38,11 +34,13 @@ export default function Register() {
       button.getAttribute("disabled") != null
         ? button.removeAttribute("disabled")
         : "";
-      SetUserName(inputs[2].value);
-      SetEmail(inputs[3].value);
-      SetPassword(inputs[5].value);
-      SetName(inputs[7].value);
-      SetLastname(inputs[8].value);
+        setUser({
+          UserName : inputs[2].value,
+          Password : inputs[5].value, 
+          Name : inputs[7].value,
+          Lastname : inputs[8].value,
+          Email : inputs[3].value
+        });
     } else {
       button.getAttribute("disabled") == null
         ? button.setAttribute("disabled", "disabled")
@@ -58,15 +56,15 @@ export default function Register() {
       </div>
 
       <div>
-        <form onSubmit={() => {PostRegister(canRegister,UserName,Password,Email,Name,Lastname)}}>
+        <div id ="Form">
           <div>
-            <h3>Usuario</h3>
+            <h3 className="text-sm">Usuario</h3>
             <input id="Username" />
           </div>
 
           <div className="flex flex-row">
             <div>
-              <h3>Contraseña</h3>
+              <h3 className="text-sm">Contraseña</h3>
               <input
                 type="password"
                 id="Password"
@@ -74,7 +72,7 @@ export default function Register() {
               />
             </div>
 
-            <div className="ml-1">
+            <div className="-mt-1">
               <h3 className="text-sm">Repetir contraseña</h3>
               <input
                 type="password"
@@ -86,7 +84,7 @@ export default function Register() {
 
           <div className="flex flex-row">
             <div>
-              <h3>Email</h3>
+              <h3  className="text-sm">Email</h3>
               <input type="email" id="email" onChange={CompareIfCanRegister} />
             </div>
             <div className="ml-1">
@@ -117,12 +115,13 @@ export default function Register() {
             type="submit"
             id="RegisterSubmit"
             className="AuthButton mb-3"
+            onClick ={() => {PostRegister(canRegister,user)}}
             disabled
           >
             Ingresar
           </button>
 
-        </form>
+        </div>
       </div>
 
 

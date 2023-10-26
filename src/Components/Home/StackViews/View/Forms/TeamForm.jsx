@@ -9,13 +9,16 @@ export default function TeamForm() {
   });
   const [postTeamStatus, setPostTeamStatus] = useState(false);
 
-  useEffect(() => {
-    PostTeam(Team);
+  const PostTeam = () => {
+    const response = PostTeam(Team);
 
-  }, [postTeamStatus])
-  
+    do {
+      console.log(response);
+      
+    } while (response !== undefined);
 
-
+    setPostTeamStatus(response.stateExecution);
+  } 
 
   const canPost = () => {
     let result = (Team.name != "" && Team.urlImage != "");
@@ -57,7 +60,7 @@ export default function TeamForm() {
         </div>
       </div>
 
-      <button className = "mx-auto text-xs" onClick = {() => {}} id = "submitForm" disabled>
+      <button className = "mx-auto text-xs" onClick = {() => {PostTeam}} id = "submitForm" disabled>
         Añadir
       </button>
     </form>

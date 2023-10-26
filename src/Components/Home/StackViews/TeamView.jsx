@@ -1,4 +1,6 @@
 import { React, useState, useEffect } from "react";
+import PropTypes from 'prop-types'
+
 import GetTeam from "/src/Logic/Home/GetTeam.js";
 import TeamComponent from "/src/Components/Home/StackComponents/TeamComponent.jsx";
 
@@ -40,4 +42,8 @@ export default function TeamView({ category }) {
       
     </div>
   );
+}
+
+TeamView.propTypes = {
+  category : PropTypes.string
 }

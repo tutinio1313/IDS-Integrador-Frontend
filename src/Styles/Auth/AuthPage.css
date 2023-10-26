@@ -35,23 +35,23 @@ hr {
     border-color: white;
 }
 
-form
+#Form
 {
     margin: 5% 0%;
 }
 
-form div 
+#Form div 
 {
     margin: 3% auto;
 }
 
-form h3
+#Form h3
 {
     text-align: left;
     margin-bottom: 1%;
 }
 
-form input
+#Form input
 {
     text-align: center;
     width: 100%;
@@ -66,6 +66,16 @@ form input
     border: 2px solid white;
     width: 130px;
     transition: filter 250ms;
+}
+
+#RegisterSubmit
+{
+    background-color: #E23802;
+}
+
+#LoginSubmit
+{
+    background-color: #C8CE00;
 }
 
 .AuthButton:disabled

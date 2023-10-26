@@ -1,6 +1,6 @@
 import "/src/Styles/Home/HomePage.css";
 import { React, useState, useEffect } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 import Card from "/src/Components/Home/Card.jsx";
 import Overlay from "/src/Components/Home/Overlay.jsx";
@@ -11,7 +11,6 @@ import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
 import localStorageHandler from "/src/Data/localStorageHandler";
 
 export default function HomeView() {
-  var buttons = [];
   const [categories, setCategories] = useState(undefined);
   const [renderOverlay, setRenderOverlay] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -35,76 +34,90 @@ export default function HomeView() {
     setStackOption(text);
   };
 
-  return (
-    <div>
-      {renderOverlay ? (
-        <Overlay
-          name={stackOption}
-          onClickFunction={SetOverlay}
-          category={selectedCategory}
-        />
-      ) : (
-        ""
-      )}
+    const onChangeSelect = (e) => {
+    console.log(e);
+    setSelectedCategory(e.target.options.selectedIndex.toString());
+    }
 
-      <div className="z-0">
-        <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
-          {user !== undefined ? (
-            <h1 className="text-xl text-center my-auto md:text-2xl ">
-              Bienvenido {user.name} {user.lastname} al sistema de arbitraje.
-            </h1>
+    if(user !== undefined)
+    {
+      
+      return (
+    
+        <div>
+          {renderOverlay ? (
+            <Overlay
+              name={stackOption}
+              onClickFunction={SetOverlay}
+              category={selectedCategory}
+            />
           ) : (
-            <h1 className="text-xl text-center my-auto md:text-2xl ">
-              Bienvenido al sistema de arbitraje.
-            </h1>
+            ""
           )}
-        </header>
-
-        <div className="container my-3 mx-auto text-center">
-          <hr className="mx-auto w-1/12" />
-          <div>
-          <select
-            className="mx-auto w-1/4 min-w-fit md:w-1/6 text-center"
-            id="CategorySelect"
-            onChange={() => {}}
-          >
-            {categories &&
-              categories.map((category) => {
-                if (category !== undefined) {
-                  return (
-                    <option
-                      key={category?.idCategory}
-                      value={category?.idCategory}
-                    >
-                      {category?.name}
-                    </option>
-                  );
-                }
+    
+          <div className="z-0">
+            <header className="container mx-auto my-auto md:w-fit md:p-10 align-middle text-center">
+              {user !== undefined ? (
+                <h1 className="text-xl text-center my-auto md:text-2xl ">
+                  Bienvenido {user.name} {user.lastname} al sistema de arbitraje.
+                </h1>
+              ) : (
+                <h1 className="text-xl text-center my-auto md:text-2xl ">
+                  Bienvenido al sistema de arbitraje.
+                </h1>
+              )}
+            </header>
+    
+            <div className="container my-3 mx-auto text-center">
+              <hr className="mx-auto w-1/12" />
+              <div>
+              <select
+                className="mx-auto w-1/4 min-w-fit md:w-1/6 text-center"
+                id="CategorySelect"
+                onChange={() => {onChangeSelect}}
+              >
+                {categories &&
+                  categories.map((category) => {
+                    if (category !== undefined) {
+                      return (
+                        <option
+                          key={category?.idCategory}
+                          value={category?.idCategory}
+                        >
+                          {category?.name}
+                        </option>
+                      );
+                    }
+                  })}
+              </select>
+              <button style = {{background : "rgb(16, 113, 14)"}} className = " border-white ml-3 hover:text-green-500 hover:border-green-500 text-sm" onClick ={() => {SetOverlay(true, "Categorias")}}>
+              +
+              </button>
+              </div>
+              
+              <hr className="mx-auto w-1/12" />
+            </div>
+    
+            <main className="flex flex-col md:flex-row">
+              {ButtonObject.map((body, key) => {
+                return (
+                  <Card
+                    key={key}
+                    Title={body.Title}
+                    URLLogo={body.URLLogo}
+                    onClickFunction={SetOverlay}
+                  />
+                );
               })}
-          </select>
-          <button style = {{background : "rgb(16, 113, 14)"}} className = " border-white ml-3 hover:text-green-500 hover:border-green-500 text-sm" onClick ={() => {SetOverlay(true, "Categorias")}}>
-          +
-          </button>
+            </main>
           </div>
-          
-          <hr className="mx-auto w-1/12" />
         </div>
+      );
+    }
 
-        <main className="flex flex-col md:flex-row">
-          {ButtonObject.map((body, key) => {
-            return (
-              <Card
-                key={key}
-                Title={body.Title}
-                URLLogo={body.URLLogo}
-                onClickFunction={SetOverlay}
-              />
-            );
-          })}
-        </main>
-      </div>
-    </div>
-  );
+    else{
+      return(window.location.href = "http://localhost:5173/login")
+    }
 
   async function LoadCategories() {
     const categoryResult = await GetCategory();
@@ -112,7 +125,7 @@ export default function HomeView() {
   }
 
   async function LoadUser() {
-    const userResult = await localStorageHandler("User");
+    const userResult = await localStorageHandler();
     setUser(userResult);
   }
 }

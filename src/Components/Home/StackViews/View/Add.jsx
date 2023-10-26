@@ -1,9 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import AddFormStack from './AddFormStack'
 
 export default function Add({
                             name,
-                            onClickFunction
+                            onClickFunction,
+                            teams,
+                            category
                         }) {
   return (
     <div 
@@ -31,8 +35,18 @@ export default function Add({
 
       <AddFormStack 
         name = {name}
+        teams = {teams}
+        category = {category}
         />
 
     </div>
   )
+}
+
+Add.propTypes = {
+  name : PropTypes.string,
+  onClickFunction : PropTypes.func,
+  teams : PropTypes.array,
+  category : PropTypes.int
+
 }

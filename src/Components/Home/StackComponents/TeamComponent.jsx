@@ -5,10 +5,15 @@ export default function TeamComponent({urlLogo, name,func}) {
 
     return(
         <div className = "container w-4/5 mx-auto my-3 flex flex-row">
-            <input onClick = {(e) => func} type = "checkbox"/>
+            <input onClick = {() => func} type = "checkbox"/>
             <img className = " max-h-12 max-w-12 mx-4" src = {urlLogo}/>
             <h3 className = "my-auto w-max">{name}</h3>
         </div>
     )
 }
 
+TeamComponent.propTypes = {
+    urlLogo : PropTypes.string,
+    name : PropTypes.string,
+    func : PropTypes.func
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import "/src/Styles/Home/Card.css";
 
 export default function Card({ Title, onClickFunction, URLLogo }) {
@@ -18,4 +19,10 @@ export default function Card({ Title, onClickFunction, URLLogo }) {
       <h3 className="ml-2 md:ml-0 text-base">{Title}</h3>
     </button>
   );
+}
+
+Card.propTypes = {
+  Title : PropTypes.string,
+  onClickFunction : PropTypes.func,
+  URLLogo : PropTypes.string 
 }

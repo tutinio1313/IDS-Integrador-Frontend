@@ -1,21 +1,16 @@
-import { useState, useEffect } from 'react';
 import './App.css';
 import localStorageHandler from './Data/localStorageHandler';
 
-//localStorageHandler("Category");
-
 export default function App() {
-  const [user, setUser] = useState(undefined);
+  let user;
 
-  useEffect(() => {
-    if(user === undefined){
-      const tempUser = localStorageHandler("User");
+  if(user === undefined){
+    const tempUser = localStorageHandler("User");
 
-      if(tempUser != null){
-        setUser(tempUser);
-      }
+    if(tempUser != null){
+      user = tempUser;
     }
-  }, [user])
+  }
 
   if(user !== undefined)
   {
@@ -28,6 +23,5 @@ export default function App() {
       window.location.href = "http://localhost:5173/login"
     );
   }
-
 }
 
