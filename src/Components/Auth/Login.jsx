@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import ResponseComponent from "/src/Components/Base/ResponseComponent";
 import Router from "/src/Router/Router";
-import axios from 'axios';
+import axios from "axios";
 
 export default function Login() {
   const [canLogin, SetCanLogin] = useState(false);
@@ -16,30 +16,26 @@ export default function Login() {
   });
 
   useEffect(() => {
-    if(loginPost){
-
+    if (loginPost) {
       const OnClickButton = async () => {
         const url = Router("UserLogin");
-        const result = await axios.post(url, user).then((response) => response.data);
-  
-        if(result.stateExecution) {
-          localStorage.setItem("cookie", result.jwt);
-          
-          const jwt = localStorage.getItem("cookie");
-          console.log(jwt);
-        }
-
-      SetLoginWasSuccesful(result.stateExecution);
-      setResponse({
-        state: true,
-        stateExecution: result.stateExecution,
-        message: result.messages
-      });
-      setLoginPost(false);  
-    };
-    OnClickButton();    
-  }
-  }, [loginPost])
+        // eslint-disable-next-line no-unused-vars
+        const result = await axios.post(url, user).then((response) => {
+          if (response.data.stateExecution) {
+            localStorage.setItem("cookie", response.jwt);
+            SetLoginWasSuccesful(response.data.stateExecution);
+            setResponse({
+              state: true,
+              stateExecution: response.data.stateExecution,
+              message: response.data.message
+            });
+          }
+        });
+        setLoginPost(false);
+      };
+      OnClickButton();
+    }
+  }, [loginPost]);
 
   const CompareIfCanLogin = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -106,17 +102,14 @@ export default function Login() {
         </div>
         {response.state ? (
           <ResponseComponent
-            responseType = "loginResponse"
+            responseType="loginResponse"
             stateExecution={response.stateExecution}
             message={response.message}
           />
         ) : null}
       </div>
     );
-  }
-  else{
-    return(
-    window.location.href = "http://localhost:5173/home"
-    );
+  } else {
+    return (window.location.href = "http://localhost:5173/home");
   }
 }
