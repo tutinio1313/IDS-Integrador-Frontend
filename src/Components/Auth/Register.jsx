@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import PostRegister from '/src/Logic/Auth/Register.js';
+import ResponseComponent from "/src/Components/Base/ResponseComponent";
+
+import Router from "/src/Router/Router";
+import axios from 'axios';
+
+const url = Router("UserRegister");
 
 export default function Register() {
   const [canRegister, SetCanRegister] = useState(false);
@@ -9,12 +14,39 @@ export default function Register() {
     Email : "",
     Name : "",
     Lastname : ""
+  });  
+  const [counter, setCounter] = useState(0);
+  const [response, setResponse] = useState({
+    state: false,
+    stateExecution: undefined,
+    message: ""
   });
-  
+
+  const [postSuccessful, setPostSuccessful] = useState(false);
+  const [postState, setPostState] = useState(false);
 
   useEffect(() => {
-    CompareIfCanRegister();
-  }, [canRegister]);
+    if(canRegister)
+    {
+
+      const callApi =  async (canRegister, user) => {
+        if(canRegister)
+        {
+          const response = await axios.post(url, JSON.stringify(user));
+
+          return {state: true,
+            stateExecution: response.stateExecution,
+            message: response.message};
+          }  
+        }
+        
+        let callResponse = callApi(canRegister, user);
+        
+        setPostSuccessful(callResponse.stateExecution);
+        setResponse(callResponse);
+        setPostState(false);
+      }
+  }, [postState]);
   
 
   const CompareIfCanRegister = () => {
@@ -34,6 +66,12 @@ export default function Register() {
       button.getAttribute("disabled") != null
         ? button.removeAttribute("disabled")
         : "";
+
+        if (counter == 0) {
+          button.addEventListener("click", () => setPostState(true));
+          setCounter(1);
+        }
+
         setUser({
           UserName : inputs[2].value,
           Password : inputs[5].value, 
@@ -48,6 +86,8 @@ export default function Register() {
     }
   };
 
+  if(!postSuccessful)
+  {
   return (
     <div id="register" style={{ display: "none" }}>
       <div className="mb-6">
@@ -115,7 +155,7 @@ export default function Register() {
             type="submit"
             id="RegisterSubmit"
             className="AuthButton mb-3"
-            onClick ={() => {PostRegister(canRegister,user)}}
+            onClick ={() => setPostState(true)}
             disabled
           >
             Ingresar
@@ -126,6 +166,24 @@ export default function Register() {
 
 
       <hr className="h-1 rounded-md mx-auto mb-3" />
+
+      {response.state ? (
+          <ResponseComponent
+            responseType = "egisterResponse"
+            stateExecution={response.stateExecution}
+            message={response.message}
+          />
+        ) : null}
+
     </div>
   );
+  }
+  else{
+    return(
+      window.location.href = "http://localhost:5173/home"
+      );
+  
+  }
 }
+
+

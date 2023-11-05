@@ -7,28 +7,19 @@ import Overlay from "/src/Components/Home/Overlay.jsx";
 
 import GetCategory from "/src/Logic/Home/GetCategory.js";
 import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
-
-import localStorageHandler from "/src/Data/localStorageHandler";
-
 export default function HomeView() {
   const [categories, setCategories] = useState(undefined);
   const [renderOverlay, setRenderOverlay] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [stackOption, setStackOption] = useState(null);
-  const [user, setUser] = useState(undefined);
+  const user = localStorage.getItem("cookie");
 
   useEffect(() => {
     if (categories === undefined) {
       LoadCategories();
     }
   }, [categories]);
-
-  useEffect(() => {
-    if (user === undefined) {
-      LoadUser();
-    }
-  }, [user]);
-
+  
   const SetOverlay = (status, text) => {
     setRenderOverlay(status);
     setStackOption(text);
@@ -122,10 +113,5 @@ export default function HomeView() {
   async function LoadCategories() {
     const categoryResult = await GetCategory();
     setCategories(categoryResult);
-  }
-
-  async function LoadUser() {
-    const userResult = await localStorageHandler();
-    setUser(userResult);
   }
 }

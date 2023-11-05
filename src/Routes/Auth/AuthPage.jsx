@@ -10,15 +10,18 @@ export default function AuthPage() {
 
       document.getElementById("login").style.display = "block";
       document.getElementsByTagName('button')[1].style.display = 'inline-block';
+      document.getElementById("loginResponse") !== null ? document.getElementById("loginResponse").style.display = "inherit" : "";
+      document.getElementById("registerResponse") !== null ? document.getElementById("registerResponse").style.display = "none" : "";
       document.getElementById("register").style.display = "none";
-      document.getElementsByTagName('p')[0].style.display = 'none';
+      document.getElementById('GoToLogin').style.display = 'none';
     } else {
-      document.getElementById('AuthPageContainer').style.backgroundColor = "#E23802";
-      
+      document.getElementById('AuthPageContainer').style.backgroundColor = "#E23802";      
       document.getElementById("login").style.display = "none";
       document.getElementsByTagName('button')[1].style.display = 'none';
+      document.getElementById("registerResponse") !== null ? document.getElementById("registerResponse").style.display = "inherit" : "";
+      document.getElementById("loginResponse") !== null ? document.getElementById("loginResponse").style.display = "none" : "";     
       document.getElementById("register").style.display = 'block';
-      document.getElementsByTagName('p')[0].style.display = 'inherit';
+      document.getElementById('GoToLogin').style.display = 'inherit';
     }
   };
 
@@ -34,7 +37,7 @@ export default function AuthPage() {
 
       <Register id ="register" />
       
-      <p className="pb-4" style={{display : "none"}}>
+      <p id = "GoToLogin" className="pb-4" style={{display : "none"}}>
         ¿Usted ya tiene una cuenta? <br /> haga click en el siguiente{" "}
         <a onClick={() => ChangeView(true)}>link</a>.
       </p>

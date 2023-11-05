@@ -1,18 +1,8 @@
 import './App.css';
-import localStorageHandler from './Data/localStorageHandler';
-
 export default function App() {
-  let user;
+  let user = localStorage.getItem("cookie");
 
-  if(user === undefined){
-    const tempUser = localStorageHandler("User");
-
-    if(tempUser != null){
-      user = tempUser;
-    }
-  }
-
-  if(user !== undefined)
+  if(user !== null)
   {
     return (
       window.location.href = "http://localhost:5173/home"
