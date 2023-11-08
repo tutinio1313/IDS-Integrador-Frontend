@@ -18,5 +18,13 @@
     {
         "name" : "Team",
         "link" : "/Team"
+    },
+    {
+        "name" : "Player",
+        "link" : "/Player"
+    },
+    {
+        "name" : "Match",
+        "link" : "/Match"
     }
 ]

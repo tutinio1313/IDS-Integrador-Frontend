@@ -6,7 +6,7 @@ import Category from "./Forms/CategoryForm";
 import Player from './Forms/PlayerForm';
 import Match from './Forms/MatchForm';
 
-export default function AddFormStack({ name, teamsList, category }) {
+export default function AddFormStack({ name, category }) {
 
   console.log(name);
 
@@ -22,8 +22,7 @@ export default function AddFormStack({ name, teamsList, category }) {
     
     case "Partidos":
       return <Match 
-      category = {category}
-      teams = {teamsList}/>
+      category = {category}/>
     
     default:
       return <Category />;
@@ -32,6 +31,5 @@ export default function AddFormStack({ name, teamsList, category }) {
 
 AddFormStack.propTypes = {
   name : PropTypes.string,
-  category : PropTypes.number,
-  teamsList : PropTypes.Array
+  category : PropTypes.string
 }

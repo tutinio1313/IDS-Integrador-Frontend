@@ -5,12 +5,12 @@ export default function App() {
   if(user !== null)
   {
     return (
-      window.location.href = "http://localhost:5173/home"
+      window.location.href = window.location.origin + "/home"
     );
   }
   else{
     return (
-      window.location.href = "http://localhost:5173/login"
+      window.location.href = window.location.origin + "/login"
     );
   }
 }

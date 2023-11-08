@@ -1,37 +1,95 @@
-import { React, useState } from "react";
-import PropTypes from 'prop-types';
+import { React, useState, useEffect } from "react";
+import GetTeam from "/src/Logic/Home/GetTeam.js";
+import PropTypes from 'prop-types'
 
-export default function MatchForm({teams}) {
+export default function MatchForm({category}) {
   const [matchForm, setMatchForm] = useState({
     idLocalMatch: "",
     idVisitorMatch: "",
-    Date: ""
+    DateTime: "",
+    Category : category
   });
 
+  const [Teams, setTeams] = useState(undefined);
+
+  useEffect(() => {
+    if (Teams === undefined) {
+
+      const LoadTeams = async() => {
+        const teams = await GetTeam();
+        console.log(teams);
+        setTeams(teams);
+      }
+
+      LoadTeams();
+    }
+  }, [Teams]);
+
   const SetMatch = (e) => {
-    setMatchForm({...matchForm,
-    [e.target.name] : e.target.value})
+    setMatchForm({ ...matchForm, [e.target.name]: e.target.value });
   };
 
   const PostMatch = () => {};
 
   return (
     <div className="container w-40 mx-auto flex flex-col">
-      <div className = "flex flex-col mx-auto">
-        <label className = "text-center">Equipo local</label>
+      <div className="flex flex-col mx-auto">
+        <label className="text-center">Equipo local</label>
         <select
           type="text"
-          id="category"
-          className = " w-40"
-          onChange={() => SetMatch}
-          name="category"
+          id="idLocalMatch"
+          className="text-center w-40"
+          onChange={SetMatch}
+          name="idLocalMatch"
+          selected = {null}
         >
-        <option>
-        <img src = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/5.png"/>
-        <p>Boca Juniors</p>
-        </option>
+          {Teams &&
+            Teams.map((team) => {
+              if (team !== undefined) {
+                return (
+                  <option
+                    key={team?.idTeam}
+                    value={team?.idTeam}
+                  >
+                    {team?.name}
+                  </option>
+                );
+              }
+            })}
         </select>
       </div>
+
+      <div className="flex flex-col mx-auto">
+        <label className="text-center">Equipo visitante</label>
+        <select
+          type="text"
+          id="idVisitorMatch"
+          className=" w-40 text-center"
+          onChange={SetMatch}
+          name="idVisitorMatch"
+          selected = {null}
+        >
+          {Teams &&
+            Teams.map((team) => {
+              if (team !== undefined) {
+                return (
+                  <option
+                    key={team?.idTeam}
+                    value={team?.idTeam}
+                  >
+                    {team?.name}
+                  </option>
+                );
+              }
+            })}
+        </select>
+      </div>
+
+      <div className = "flex flex-col mx-auto">
+        <label className ="text-center">Fecha y hora</label>
+        <input type="datetime-local" name="DateTime" id="DateTime" onChange = {SetMatch} className=" w-40 text-center" min={new Date().toISOString().slice(0, 16)} />
+      </div>
+
 
       <button
         className="mt-6 mx-auto text-xs"
@@ -47,5 +105,5 @@ export default function MatchForm({teams}) {
 }
 
 MatchForm.propTypes = {
-    Teams : PropTypes.array
+  category : PropTypes.string
 }

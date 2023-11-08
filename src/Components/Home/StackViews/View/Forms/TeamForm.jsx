@@ -1,24 +1,37 @@
 import { React, useState, useEffect } from "react";
-import PostTeam from '/src/Logic/Home/PostTeam.js';
 import "/src/Styles/Home/Form.css";
+import axios from 'axios';
+import Router from '/src/Router/Router.js';
+import Response from '/src/Components/Base/ResponseComponent.jsx';
 
 export default function TeamForm() {
   const [Team, setTeam] = useState({
     name: "",
-    urlImage: ""
+    Image: ""
   });
-  const [postTeamStatus, setPostTeamStatus] = useState(false);
+  const [callApi, setCallApi] = useState(false);
+    const [response, setResponse] = useState({
+      state : false,
+      stateExecution : null,
+      message : null});
 
-  const PostTeam = () => {
-    const response = PostTeam(Team);
+  useEffect(() => {
+    if(callApi){
+      const Url = Router("Team");
+      axios.Post(Url, Team).then( (response) => {
+        if(response.statusCode == 200){
+          setResponse(
+            {
+               state : true,
+               stateExecution : response.data.stateExecution,
+               message : response.data.message  
+            });
+          setCallApi(false);
+        }  
+      })
+    }
+  }, [callApi])
 
-    do {
-      console.log(response);
-      
-    } while (response !== undefined);
-
-    setPostTeamStatus(response.stateExecution);
-  } 
 
   const canPost = () => {
     let result = (Team.name != "" && Team.urlImage != "");
@@ -45,24 +58,34 @@ export default function TeamForm() {
   };
 
   return (
+    <div>
     <form className = "container flex flex-col">
       <div>
-        <div>
+        <div className = "container flex flex-col">
           <label>Nombre del equipo</label>
 
-          <input type="text" name="name" onChange={SetTeamState} />
+          <input type="text" className = "mx-auto" name="name" onChange={SetTeamState} />
         </div>
 
-        <div>
-          <label>URL de la Imagen</label>
+        <div className = "container flex flex-col mx-auto w-fit">
+          <label>Imagen</label>
 
-          <input type="text" name="urlImage" onChange={SetTeamState} />
+          <input type="file" name="Image" accept="image/png, image/jpeg" className = "mx-0 w-fit"  id = "Image" onChange={SetTeamState} />
         </div>
       </div>
 
-      <button className = "mx-auto text-xs" onClick = {() => {PostTeam}} id = "submitForm" disabled>
+      <button className = "mx-auto text-xs" onClick = {() => setCallApi(true)} id = "submitForm" disabled>
         Añadir
       </button>
     </form>
+
+
+      {
+        response.state ? <Response responseType = {null} 
+                                  stateExecution = {response.stateExecution}
+                                  message = {response.message}
+                                  /> : null
+      }
+    </div>
   );
 }

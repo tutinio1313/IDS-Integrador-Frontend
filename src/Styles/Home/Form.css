@@ -1,3 +1,16 @@
+input
+{
+    text-align: center;
+    width: fit-content;
+    background-color: transparent;
+    border: solid white 3px;
+    border-radius: 8px;
+}
+
+#Image{
+    border : solid transparent;
+}
+
 #submitForm { 
     border-radius: 7px;
 border: 0.5px solid #FFF;

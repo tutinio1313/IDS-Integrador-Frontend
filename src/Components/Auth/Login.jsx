@@ -19,8 +19,7 @@ export default function Login() {
     if (loginPost) {
       const OnClickButton = async () => {
         const url = Router("UserLogin");
-        // eslint-disable-next-line no-unused-vars
-        const result = await axios.post(url, user).then((response) => {
+        await axios.post(url, user).then((response) => {
           if (response.data.stateExecution) {
             localStorage.setItem("cookie", response.jwt);
             SetLoginWasSuccesful(response.data.stateExecution);
@@ -110,6 +109,6 @@ export default function Login() {
       </div>
     );
   } else {
-    return (window.location.href = "http://localhost:5173/home");
+    return (window.location.href = window.location.origin +"/home");
   }
 }

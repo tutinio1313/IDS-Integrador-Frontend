@@ -4,11 +4,8 @@ import PropTypes from 'prop-types'
 import GetTeam from "/src/Logic/Home/GetTeam.js";
 import TeamComponent from "/src/Components/Home/StackComponents/TeamComponent.jsx";
 
-export default function TeamView({ category }) {
+export default function TeamView({ setSelectedTeam }) {
   const [Teams, setTeams] = useState(undefined);
-  let selectedTeam;
-
-  const setSelectedTeam = (e) => {selectedTeam = e.target.value};
 
   useEffect(() => {
     if (Teams === undefined) {
@@ -28,7 +25,8 @@ export default function TeamView({ category }) {
         Teams.map((Team) => {
           return (
             <TeamComponent
-              key={Team.idTeam}
+              key = {Team.idTeam}
+              idTeam={Team.idTeam}
               name={Team.name}
               urlLogo={Team.urlImage}
               func = {setSelectedTeam}
@@ -36,7 +34,9 @@ export default function TeamView({ category }) {
           );
         })
       ) : (
-        <h3>No hay equipos cargados.</h3>
+        <div className = "container mx-auto">
+          <h3>No hay equipos cargados.</h3>
+        </div>
       )}
 
       
@@ -45,5 +45,5 @@ export default function TeamView({ category }) {
 }
 
 TeamView.propTypes = {
-  category : PropTypes.string
+  setSelectedTeam : PropTypes.func
 }
