@@ -25,7 +25,7 @@ export default function Overlay({ name, onClickFunction, category }) {
 
   return (
     <div
-      className="w-full h-full md:mx-auto md:my-auto md:top-0 md:left-0 md:bottom-0 md:right-0 md:h-fit md:w-64 p-4 bg-black z-10 absolute"
+      className="w-full h-full md:mx-auto md:my-auto md:top-0 md:left-0 md:bottom-0 md:right-0 md:h-fit md:w-80 p-4 bg-black z-10 absolute"
       id="Overlay"
     >
       {renderOverlay ? <Add name={name} category = {category} onClickFunction={SetOverlay} /> : ""}

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types'
 
-import Team from "./Forms/TeamForm";
-import Category from "./Forms/CategoryForm";
-import Player from './Forms/PlayerForm';
-import Match from './Forms/MatchForm';
+import Team from "./Forms/Add/TeamForm";
+import Category from "./Forms/Add/CategoryForm";
+import Player from './Forms/Add/PlayerForm';
+import Match from './Forms/Add/MatchForm';
 
 export default function AddFormStack({ name, category }) {
 

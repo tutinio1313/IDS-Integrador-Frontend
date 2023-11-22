@@ -8,9 +8,6 @@ export default function Router(param) {
           {
                 return Paths[0].link + Paths[i].link;
           }
-          else
-          {
-        }
     }
     alert("Oops no se ha encontrado el link");
     return null;

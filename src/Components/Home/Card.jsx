@@ -7,7 +7,7 @@ export default function Card({ Title, onClickFunction, URLLogo }) {
   return (
     <button
       id="card"
-      className="container mx-auto w-full h-max duration-1000 ease-linear transition hover:saturate-200 flex-row md:w-max md:h-max md:flex-col md:text-center"
+      className="container mx-auto w-full h-full duration-1000 ease-linear transition hover:saturate-200 flex-row md:w-max md:h-max md:flex-col md:text-center"
       onClick={() => {onClickFunction(true, Title)}}
     >
       <img

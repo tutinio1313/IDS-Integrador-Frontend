@@ -10,7 +10,7 @@ import ButtonObject from "/src/Router/Paths/HomeCardPaths.json";
 export default function HomeView() {
   const [categories, setCategories] = useState(undefined);
   const [renderOverlay, setRenderOverlay] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("0");
+  const [selectedCategory, setSelectedCategory] = useState("1");
   const [stackOption, setStackOption] = useState(null);
   const [user,setUser] = useState(localStorage.getItem("cookie"));
 

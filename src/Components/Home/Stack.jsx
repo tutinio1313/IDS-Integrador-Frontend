@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import TeamView from "./StackViews/TeamView.jsx";
+import MatchView from './StackViews/MatchView.jsx';
 import AddCategoryView from './StackViews/AddCategoryView'
 
 // eslint-disable-next-line no-unused-vars
@@ -17,7 +18,7 @@ export default function Stack({ name, category }) {
       break;
 
     case "Partidos":
-      break;
+      return(<MatchView/>);
 
     default:
       return(<AddCategoryView/>)
